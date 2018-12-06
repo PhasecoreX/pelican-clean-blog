@@ -151,14 +151,22 @@ hr.small {
 .intro-header .site-heading,
 .intro-header .post-heading,
 .intro-header .page-heading {
-  padding: 100px 0 50px;
+  padding: 50px 0 0 0;
   color: white;
+}
+.post-heading-resize, .page-heading-resize {
+    display: flex;
+    height: 350px;
+    align-items: center;
+}
+.page-heading-resize {
+    justify-content: center;
 }
 @media only screen and (min-width: 768px) {
   .intro-header .site-heading,
   .intro-header .post-heading,
   .intro-header .page-heading {
-    padding: 150px 0;
+    padding: 0;
   }
 }
 .intro-header .site-heading,

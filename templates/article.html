@@ -100,22 +100,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-heading">
-                        <h1>{{ article.title|striptags }}</h1>
-                        {% if article.headline %}
-                            <h3 class="subheading">{{ article.headline }}</h3>
-                        {% endif %}
-                        <span class="meta">Posted by
-                            {% for author in article.authors %}
-                                <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
-                            {% endfor %}
-                             on {{ article.locale_date }}
-                        </span>
-                        {% if article.modified %}
-                            <span class="meta">Updated on {{ article.locale_modified }}</span>
-                        {% endif %}
-                        {% import 'translations.html' as translations with context %}
-                        {{ translations.translations_for(article) }}
+                    <div class="post-heading-resize">
+                        <div class="post-heading">
+                            <h1>{{ article.title|striptags }}</h1>
+                            {% if article.headline %}
+                                <h3 class="subheading">{{ article.headline }}</h3>
+                            {% endif %}
+                            <span class="meta">Posted by
+                                {% for author in article.authors %}
+                                    <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+                                {% endfor %}
+                                 on {{ article.locale_date }}
+                            </span>
+                            {% if article.modified %}
+                                <span class="meta">Updated on {{ article.locale_modified }}</span>
+                            {% endif %}
+                            {% import 'translations.html' as translations with context %}
+                            {{ translations.translations_for(article) }}
+                        </div>
                     </div>
                 </div>
             </div>
