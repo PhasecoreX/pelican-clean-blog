@@ -89,6 +89,15 @@ put together in two large files. This will include your choice of code highlight
 and will respect your choice of disabling the theme JavaScript, but it will NOT
 include your user defined CSS.
 
+### Disable Google fonts
+
+If you want to further slim down your site, you can disable Google fonts. Simply
+set the following variable:
+
+```python
+NO_GOOGLE_FONTS = True
+```
+
 ### User defined footer
 
 Define ``FOOTER_INCLUDE`` in ``pelicanconf.py`` to insert a custom footer text
