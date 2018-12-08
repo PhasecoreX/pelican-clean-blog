@@ -41,6 +41,10 @@
             <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(slug=tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
         {% endif %}
     {% endfor %}
+    
+    {% if 'assets' in PLUGINS %}
+        {% include 'minify_css.html' with context %}
+    {% else %}
         <!-- Bootstrap Core CSS -->
         <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/bootstrap.min.purge.css" rel="stylesheet">
 
@@ -54,6 +58,8 @@
             <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/code_blocks/darkly.css" rel="stylesheet">
         {% endif %}
 
+    {% endif %}
+    
         {% if CSS_OVERRIDE %}
             <!-- CSS specified by the user -->
             <link href="{{ SITEURL }}/{{ CSS_OVERRIDE }}" rel="stylesheet">
@@ -191,15 +197,19 @@
         </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js"></script>
+    {% if 'assets' in PLUGINS %}
+        {% include 'minify_js.html' with context %}
+    {% else %}
+        <!-- jQuery -->
+        <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"></script>
 
     {% if not DISABLE_CUSTOM_THEME_JAVASCRIPT %}
-        <!-- Custom Theme JavaScript -->
-        <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js"></script>
+            <!-- Custom Theme JavaScript -->
+            <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js"></script>
+        {% endif %}
     {% endif %}
 
     {% include 'analytics.html' %}

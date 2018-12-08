@@ -82,6 +82,13 @@ CSS_OVERRIDE = 'myblog.css'
 Set ``DISABLE_CUSTOM_THEME_JAVASCRIPT`` to True if you want to disable
 ``js/clean-blog.min.js`` in case it affects forms and input fields.
 
+### Assets support
+
+If you have the ``assets`` plugin enabled, all css and all javascript will be
+put together in two large files. This will include your choice of code highlight,
+and will respect your choice of disabling the theme JavaScript, but it will NOT
+include your user defined CSS.
+
 ### User defined footer
 
 Define ``FOOTER_INCLUDE`` in ``pelicanconf.py`` to insert a custom footer text
