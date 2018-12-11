@@ -138,9 +138,9 @@
     {% endif %}
 
     {% include 'sharing.html' %}
-    <hr>
 
     {% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
+        <hr>
         <div class="comments">
             <h2>Comments !</h2>
             <div id="disqus_thread"></div>
