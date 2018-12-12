@@ -66,11 +66,15 @@
         {% endif %}
 
         <!-- Custom Fonts -->
-            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         {% if not NO_GOOGLE_FONTS %}
             <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
             <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
         {% endif %}
+        
+        <!-- FontAwesome Icons (if there is no javascript) -->
+        <noscript>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        </noscript>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -202,17 +206,43 @@
     {% if 'assets' in PLUGINS %}
         {% include 'minify_js.html' with context %}
     {% else %}
-        <!-- jQuery -->
-        <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"></script>
-
+        <script type="text/javascript">
+        function parseJSAtOnload() {
         {% if not DISABLE_CUSTOM_THEME_JAVASCRIPT %}
-            <!-- Custom Theme JavaScript -->
-            <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js"></script>
+        var links = ["{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js"],
+        {% else %}
+        var links = ["{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"],
         {% endif %}
+        headElement = document.getElementsByTagName("head")[0],
+        linkElement, i;
+        for (i = 0; i < links.length; i++) {
+        linkElement = document.createElement("script");
+        linkElement.src = links[i];
+        headElement.appendChild(linkElement);
+        }
+        }
+        if (window.addEventListener)
+        window.addEventListener("load", parseJSAtOnload, false);
+        else if (window.attachEvent)
+        window.attachEvent("onload", parseJSAtOnload);
+        else window.onload = parseJSAtOnload;
+        </script>
     {% endif %}
+    
+    <script type="text/javascript">
+    function parseCSSAtOnload() {
+    var element = document.createElement("link");
+    element.rel = 'stylesheet';
+    element.href = 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+    element.type = 'text/css';
+    document.body.appendChild(element);
+    }
+    if (window.addEventListener)
+    window.addEventListener("load", parseCSSAtOnload, false);
+    else if (window.attachEvent)
+    window.attachEvent("onload", parseCSSAtOnload);
+    else window.onload = parseCSSAtOnload;
+    </script>
 
     {% include 'analytics.html' %}
     {% include 'disqus_script.html' %}
