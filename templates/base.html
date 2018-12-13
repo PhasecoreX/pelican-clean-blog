@@ -207,16 +207,28 @@
     {% if 'assets' in PLUGINS %}
         {% include 'minify_js.html' with context %}
     {% else %}
-        <!-- jQuery -->
-        <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"></script>
-
+        <script defer src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js"></script>
+    
+        <script type="text/javascript">
+        function parseJSAtOnload() {
         {% if not DISABLE_CUSTOM_THEME_JAVASCRIPT %}
-            <!-- Custom Theme JavaScript -->
-            <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js"></script>
+        var links = ["{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js"],
+        {% else %}
+        var links = ["{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"],
         {% endif %}
+        linkElement, i;
+        for (i = 0; i < links.length; i++) {
+        linkElement = document.createElement("script");
+        linkElement.src = links[i];
+        document.body.appendChild(linkElement);
+        }
+        }
+        if (window.addEventListener)
+        window.addEventListener("load", parseJSAtOnload, false);
+        else if (window.attachEvent)
+        window.attachEvent("onload", parseJSAtOnload);
+        else window.onload = parseJSAtOnload;
+        </script>
     {% endif %}
     
     <script type="text/javascript">
