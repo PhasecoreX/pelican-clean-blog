@@ -1,5 +1,6 @@
 {% if not DISABLE_CUSTOM_THEME_JAVASCRIPT %}
     {% assets filters="rjsmin", output="js/packed.js", "js/jquery.min.js", "js/bootstrap.min.js", "js/clean-blog.min.js" %}
+        <link rel="preload" href="{{ SITEURL }}/{{ ASSET_URL }}" as="script">
         <script type="text/javascript">
         function parseJSAtOnload() {
         var element = document.createElement("script");
@@ -15,6 +16,7 @@
     {% endassets %}
 {% else %}
     {% assets filters="rjsmin", output="js/packed.js", "js/jquery.min.js", "js/bootstrap.min.js" %}
+        <link rel="preload" href="{{ SITEURL }}/{{ ASSET_URL }}" as="script">
         <script type="text/javascript">
         function parseJSAtOnload() {
         var element = document.createElement("script");

@@ -4,10 +4,12 @@
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
     {% if HEADER_COVER %}
+        <link rel="preload" href="{{ SITEURL }}/{{ HEADER_COVER }}" as="image">
         <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ HEADER_COVER }}')">
     {% elif HEADER_COLOR %}
         <header class="intro-header" style="background-color: {{ HEADER_COLOR }}">
     {% else %}
+        <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg" as="image">
         <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg')">
     {% endif %}
         <div class="container">
