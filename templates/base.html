@@ -207,19 +207,18 @@
     {% if 'assets' in PLUGINS %}
         {% include 'minify_js.html' with context %}
     {% else %}
-        <script defer src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js"></script>
-    
         <script type="text/javascript">
         function parseJSAtOnload() {
         {% if not DISABLE_CUSTOM_THEME_JAVASCRIPT %}
-        var links = ["{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js"],
+        var links = ["{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js"],
         {% else %}
-        var links = ["{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"],
+        var links = ["{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"],
         {% endif %}
         linkElement, i;
         for (i = 0; i < links.length; i++) {
         linkElement = document.createElement("script");
         linkElement.src = links[i];
+        linkElement.async = false;
         document.body.appendChild(linkElement);
         }
         }
