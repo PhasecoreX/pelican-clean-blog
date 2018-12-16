@@ -75,9 +75,9 @@
                 {% endfor %}
                  on {{ article.locale_date }}
             </p>
-            {% include 'comments.html' %}
+            {% include 'includes/comments.html' %}
         </div>
     {% endfor %}
 
-    {% include "pagination.html" %}
+    {% include "includes/pagination.html" %}
 {% endblock content %}

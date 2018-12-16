@@ -43,7 +43,7 @@
     {% endfor %}
     
     {% if 'assets' in PLUGINS %}
-        {% include 'minify_css.html' with context %}
+        {% include 'includes/minify_css.html' with context %}
     {% else %}
         <!-- Bootstrap Core CSS -->
         <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/bootstrap.min.css" rel="stylesheet">
@@ -198,7 +198,7 @@
                     {% if FOOTER_INCLUDE %}
                         {% include FOOTER_INCLUDE %}
                     {% else %}
-                        {% include 'footer.html' %}
+                        {% include 'includes/footer.html' %}
                     {% endif %}
                 </div>
             </div>
@@ -206,7 +206,7 @@
     </footer>
 
     {% if 'assets' in PLUGINS %}
-        {% include 'minify_js.html' with context %}
+        {% include 'includes/minify_js.html' with context %}
     {% else %}
         <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js" as="script">
         <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js" as="script">
@@ -251,8 +251,8 @@
     else window.onload = parseCSSAtOnload;
     </script>
 
-    {% include 'analytics.html' %}
-    {% include 'disqus_script.html' %}
+    {% include 'includes/analytics.html' %}
+    {% include 'includes/disqus_script.html' %}
 </body>
 
 </html>
