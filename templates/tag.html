@@ -1,5 +1,6 @@
 {% extends "index.html" %}
-{% block title %}{{ SITENAME }} - Tag {{ tag }}{% endblock %}
+
+{% block title %}{{ SITENAME }} - Articles Tagged '{{ tag }}'{% endblock %}
 {% block header %}
     {% if HEADER_COVER %}
         <link rel="preload" href="{{ SITEURL }}/{{ HEADER_COVER }}" as="image">
@@ -15,7 +16,7 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading-resize">
                         <div class="post-heading">
-                            <h1>Tag {{ tag }}</h1>
+                            <h1>Articles Tagged '{{ tag }}'</h1>
                         </div>
                     </div>
                 </div>
