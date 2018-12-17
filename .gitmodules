@@ -1,3 +1,3 @@
-[submodule "templates/cc-tools"]
-	path = templates/cc-tools
+[submodule "templates/includes/cc-tools"]
+	path = templates/includes/cc-tools
 	url = https://github.com/hlapp/cc-tools
