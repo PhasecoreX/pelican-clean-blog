@@ -208,49 +208,37 @@
     </footer>
 
     {% if 'assets' in PLUGINS %}
-        {% include 'includes/minify_js.html' with context %}
+    <link rel="preload" href="{% include 'includes/minify_js.html' with context %}" as="script">
     {% else %}
-        <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js" as="script">
-        <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js" as="script">
-        {% if not DISABLE_CUSTOM_THEME_JAVASCRIPT %}
-        <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js" as="script">
-        {% endif %}
-        <script type="text/javascript">
-        function parseJSAtOnload() {
-        {% if not DISABLE_CUSTOM_THEME_JAVASCRIPT %}
-        var links = ["{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js"],
-        {% else %}
-        var links = ["{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"],
-        {% endif %}
-        linkElement, i;
-        for (i = 0; i < links.length; i++) {
-        linkElement = document.createElement("script");
-        linkElement.src = links[i];
-        linkElement.async = false;
-        document.body.appendChild(linkElement);
-        }
-        }
-        if (window.addEventListener)
-        window.addEventListener("load", parseJSAtOnload, false);
-        else if (window.attachEvent)
-        window.attachEvent("onload", parseJSAtOnload);
-        else window.onload = parseJSAtOnload;
-        </script>
+    <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js" as="script">
+    <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js" as="script">
+    {% if not DISABLE_CUSTOM_THEME_JAVASCRIPT %}
+    <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js" as="script">
+    {% endif %}
     {% endif %}
     
     <script type="text/javascript">
-    function parseCSSAtOnload() {
-    var element = document.createElement("link");
+    function parseElementsAtOnload() {
+    var links = [{% if 'assets' in PLUGINS %}"{% include 'includes/minify_js.html' with context %}"{% else %}"{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"{% if not DISABLE_CUSTOM_THEME_JAVASCRIPT %}, "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js"{% endif %}{% endif %}, "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"],
+    element, i;
+    for (i = 0; i < links.length; i++) {
+    if (links[i].substring(links[i].length - 3) === "css") {
+    element = document.createElement("link");
     element.rel = 'stylesheet';
-    element.href = 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+    element.href = links[i];
     element.type = 'text/css';
-    document.body.appendChild(element);
+    } else {
+    element = document.createElement("script");
+    element.src = links[i];
+    element.async = false;
     }
+    document.body.appendChild(element);
+    }}
     if (window.addEventListener)
-    window.addEventListener("load", parseCSSAtOnload, false);
+    window.addEventListener("load", parseElementsAtOnload, false);
     else if (window.attachEvent)
-    window.attachEvent("onload", parseCSSAtOnload);
-    else window.onload = parseCSSAtOnload;
+    window.attachEvent("onload", parseElementsAtOnload);
+    else window.onload = parseElementsAtOnload;
     </script>
 
     {% include 'includes/analytics.html' %}
