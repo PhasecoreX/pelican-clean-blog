@@ -156,7 +156,7 @@ hr.small {
 }
 .post-heading-resize, .page-heading-resize {
     display: flex;
-    height: 350px;
+    height: 300px;
     align-items: center;
 }
 .page-heading-resize {
