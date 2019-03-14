@@ -1,9 +1,0 @@
-{% if not DISABLE_CUSTOM_THEME_JAVASCRIPT %}
-    {% assets filters="rjsmin", output="js/packed.js", "js/jquery.min.js", "js/bootstrap.min.js", "js/clean-blog.min.js" -%}
-    {{ SITEURL }}/{{ ASSET_URL }}
-    {%- endassets %}
-{% else %}
-    {% assets filters="rjsmin", output="js/packed.js", "js/jquery.min.js", "js/bootstrap.min.js" -%}
-    {{ SITEURL }}/{{ ASSET_URL }}
-    {%- endassets %}
-{% endif %}

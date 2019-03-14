@@ -77,6 +77,22 @@
         <noscript>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         </noscript>
+        
+        <style>
+            @media screen and (max-width: 768px) {
+                #menu-toggle:checked + .navbar-collapse .navbar-nav {
+                    max-height: 1024px;
+                    transition: max-height .3s cubic-bezier(.5,0,1,0);
+                }
+              
+                .navbar-nav {
+                    overflow: hidden;
+                    max-height: 0;
+                    transition: max-height .3s cubic-bezier(0,1,0,1);
+                    margin: 0;
+                }
+            }
+        </style>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -129,18 +145,18 @@
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ SITEURL }}/">{{ SITENAME }}</a>
+                <label for="menu-toggle" class="navbar-toggle collapsed">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ SITEURL }}/">{{ SITENAME }}</a>
+                </label>
             </div>
-
+            <input type="checkbox" id="menu-toggle" class="hidden"/>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     {% for title, link in MENUITEMS %}
                         <li><a href="{{ link }}">{{ title }}</a></li>
@@ -206,20 +222,10 @@
             </div>
         </div>
     </footer>
-
-    {% if 'assets' in PLUGINS %}
-    <link rel="preload" href="{% include 'includes/minify_js.html' with context %}" as="script">
-    {% else %}
-    <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js" as="script">
-    <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js" as="script">
-    {% if not DISABLE_CUSTOM_THEME_JAVASCRIPT %}
-    <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js" as="script">
-    {% endif %}
-    {% endif %}
     
     <script type="text/javascript">
     function parseElementsAtOnload() {
-    var links = [{% if 'assets' in PLUGINS %}"{% include 'includes/minify_js.html' with context %}"{% else %}"{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js", "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"{% if not DISABLE_CUSTOM_THEME_JAVASCRIPT %}, "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js"{% endif %}{% endif %}, "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"],
+    var links = ["https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"],
     element, i;
     for (i = 0; i < links.length; i++) {
     if (links[i].substring(links[i].length - 3) === "css") {
