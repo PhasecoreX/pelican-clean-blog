@@ -1,9 +1,9 @@
 {% if COLOR_SCHEME_CSS %}
-    {% assets filters="cssmin", output="css/style.min.css", "css/bootstrap.min.css", "css/clean-blog.min.css", "css/code_blocks/" + COLOR_SCHEME_CSS %}
+    {% assets filters="cssmin", output="css/style.min.css", "css/bootstrap.css", "css/clean-blog.css", "css/css-dropdown.css", "css/code_blocks/" + COLOR_SCHEME_CSS %}
         <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
     {% endassets %}
 {% else %}
-    {% assets filters="cssmin", output="css/style.min.css", "css/bootstrap.min.css", "css/clean-blog.min.css", "css/code_blocks/darkly.css" %}
+    {% assets filters="cssmin", output="css/style.min.css", "css/bootstrap.css", "css/clean-blog.css", "css/css-dropdown.css", "css/code_blocks/darkly.css" %}
         <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
     {% endassets %}
 {% endif %}

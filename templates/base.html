@@ -51,6 +51,9 @@
         <!-- Custom CSS -->
         <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/clean-blog.min.css" rel="stylesheet">
 
+        <!-- CSS Hamburger Menu -->
+        <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/css-dropdown.min.css" rel="stylesheet">
+
         <!-- Code highlight color scheme -->
         {% if COLOR_SCHEME_CSS %}
             <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/code_blocks/{{ COLOR_SCHEME_CSS }}" rel="stylesheet">
@@ -79,22 +82,6 @@
             <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
             </noscript>
         {% endif %}
-        
-        <style>
-            @media screen and (max-width: 768px) {
-                #menu-toggle:checked + .navbar-collapse .navbar-nav {
-                    max-height: 1024px;
-                    transition: max-height .3s cubic-bezier(.5,0,1,0);
-                }
-              
-                .navbar-nav {
-                    overflow: hidden;
-                    max-height: 0;
-                    transition: max-height .3s cubic-bezier(0,1,0,1);
-                    margin: 0;
-                }
-            }
-        </style>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

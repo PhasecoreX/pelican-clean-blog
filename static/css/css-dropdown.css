@@ -1,0 +1,12 @@
+@media screen and (max-width: 768px) {
+  #menu-toggle:checked + .navbar-collapse .navbar-nav {
+    max-height: 1024px;
+    transition: max-height .3s cubic-bezier(.5,0,1,0);
+  }
+  .navbar-nav {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .3s cubic-bezier(0,1,0,1);
+    margin: 0;
+  }
+}
