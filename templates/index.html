@@ -1,12 +1,12 @@
 {% extends "base_list.html" %}
 
 {% block head %}
-    {{ super() }}
+{{ super() }}
     <meta name="description" content="{{ SITESUBTITLE|default('View the blog.') }}">
 {% endblock %}
 
 {% block opengraph %}
-    {{ super() }}
+{{ super() }}
     <meta property="og:title" content="{{ SITENAME }}">
     <meta property="og:description" content="{{ SITESUBTITLE|default('View the blog.') }}">
     {% if HEADER_COVER %}
@@ -18,16 +18,15 @@
 
 {% block header %}
     <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    {% if HEADER_COVER %}
-        <link rel="preload" href="{{ SITEURL }}/{{ HEADER_COVER }}" as="image">
-        <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ HEADER_COVER }}')">
-    {% elif HEADER_COLOR %}
-        <header class="intro-header" style="background-color: {{ HEADER_COLOR }}">
-    {% else %}
-        <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg" as="image">
-        <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg')">
-    {% endif %}
+{% if HEADER_COVER %}
+    <link rel="preload" href="{{ SITEURL }}/{{ HEADER_COVER }}" as="image">
+    <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ HEADER_COVER }}')">
+{% elif HEADER_COLOR %}
+    <header class="intro-header" style="background-color: {{ HEADER_COLOR }}">
+{% else %}
+    <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg" as="image">
+    <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg')">
+{% endif %}
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">

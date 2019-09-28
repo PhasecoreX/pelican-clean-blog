@@ -2,39 +2,40 @@
 
 {% block content %}
     {% if INTRO_CONTENT %}
-        <div class="row intro-content">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                {{ INTRO_CONTENT }}
-            </div>
-        </div>
+                <div class="row intro-content">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        {{ INTRO_CONTENT }}
+                    </div>
+                </div>
     {% endif %}
     {% for article in articles_page.object_list %}
-        <div class="post-preview">
-            <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">
-                <h2 class="post-title">
-                    {{ article.title }}
-                </h2>
-            </a>
-            {% if SHOW_FULL_ARTICLE %}
-                {{ article.content }}
-            {% else %}
-                <p class="article-summary">
-                {% if article.has_summary %}
-                    {{ article.summary }}
-                {% elif article.summary %}
-                    {{ article.summary|striptags|truncate(140) }}
+                <div class="post-preview">
+                    <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">
+                        <h2 class="post-title">
+                            {{ article.title }}
+                        </h2>
+                    </a>
+                {% if SHOW_FULL_ARTICLE %}
+                    {{ article.content }}
+                {% else %}
+                    <p class="article-summary">
+                    {% if article.has_summary %}
+                        {{ article.summary }}
+                    {% elif article.summary %}
+                        {{ article.summary|striptags|truncate(140) }}
+                    {% endif %}
+                    </p>
                 {% endif %}
-                </p>
-            {% endif %}
-            <p class="post-meta">Posted by
-                {% for author in article.authors %}
-                    <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
-                {% endfor %}
-                 on {{ article.locale_date }}
-            </p>
-            {% include 'includes/comments.html' %}
-        </div>
+                    <p class="post-meta">
+                        Posted by
+                        {% for author in article.authors %}
+                        <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+                        {% endfor %}
+                        on {{ article.locale_date }}
+                    </p>
+                    {% include 'includes/comments.html' %}
+                </div>
     {% endfor %}
 
-    {% include "includes/pagination.html" %}
+{% include "includes/pagination.html" %}
 {% endblock content %}
