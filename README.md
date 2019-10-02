@@ -77,25 +77,25 @@ after theme CSS. Example:
 CSS_OVERRIDE = 'myblog.css'
 ```
 
-### Disable theme JavaScript
-
-Set ``DISABLE_CUSTOM_THEME_JAVASCRIPT`` to True if you want to disable
-``js/clean-blog.min.js`` in case it affects forms and input fields.
-
 ### Assets support
 
-If you have the ``assets`` plugin enabled, all css and all javascript will be
-put together in two large files. This will include your choice of code highlight,
-and will respect your choice of disabling the theme JavaScript, but it will NOT
-include your user defined CSS.
+If you have the ``assets`` plugin enabled, all css will be
+put together in a large file. This will include your choice of code highlight,
+but it will NOT include your user defined CSS.
 
-### Disable Google fonts
+Assets requres that you have `webassets` and `cssutils` installed. This can be done using `pip`.
 
-If you want to further slim down your site, you can disable Google fonts. Simply
-set the following variable:
+### Disable custom fonts
+
+If you want to further slim down your site, you can disable Google and FontAwesome fonts.
+For disabling Google fonts, you will notice that the page loads faster and uses less bandwidth,
+at the cost of using a font that is close to but not completely the same as the original Google font.
+For disabling FontAwesome fonts, you will notice that your social icons change into text only links.
+Simply set the following variables for disabling either of them:
 
 ```python
 NO_GOOGLE_FONTS = True
+NO_FONTAWESOME_FONTS = True
 ```
 
 ### User defined footer
@@ -237,5 +237,3 @@ Headline: Resume of article
 
 This is the content of my super blog post.
 ```
-
-Test
