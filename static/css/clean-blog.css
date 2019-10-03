@@ -410,3 +410,9 @@ img::-moz-selection {
   padding-top:10px;
   padding-bottom: 10px;
 }
+.hilitewrapper {
+  max-width: inherit;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0px;
+}
