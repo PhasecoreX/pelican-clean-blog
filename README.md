@@ -91,6 +91,7 @@ These are some other Pelican plugins that are supported natively with this theme
 
 - ``readtime``: Adds "# minute read" to articles.
 - ``better_code_samples``: Makes the code blocks with line numbers scrollable.
+- ``share_post``: Adds old-school share URLs to the bottom of your articles (a non-tracking, non-JavaScript alternative to AddThis).
 
 ### Disable custom fonts
 
