@@ -107,7 +107,7 @@
                             <span class="meta">
                                 Posted by
                             {% for author in article.authors %}
-                                <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+                                <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
                             {% endfor %}
                                 on {{ article.locale_date }}
                             </span>
