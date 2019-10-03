@@ -83,7 +83,14 @@ If you have the ``assets`` plugin enabled, all css will be
 put together in a large file. This will include your choice of code highlight,
 but it will NOT include your user defined CSS.
 
-Assets requres that you have `webassets` and `cssutils` installed. This can be done using `pip`.
+Assets requres that you have ``webassets`` and ``cssutils`` installed. This can be done using ``pip``.
+
+### Other plugins supported
+
+These are some other Pelican plugins that are supported natively with this theme:
+
+- ``readtime``: Adds "# minute read" to articles.
+- ``better_code_samples``: Makes the code blocks with line numbers scrollable.
 
 ### Disable custom fonts
 

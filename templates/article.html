@@ -114,6 +114,9 @@
                             {% if article.modified %}
                             <span class="meta">Updated on {{ article.locale_modified }}</span>
                             {% endif %}
+                            {% if article.readtime %}
+                            <span class="meta">{{article.readtime.minutes}} minute read</span>
+                            {% endif %}
                             {% import 'translations.html' as translations with context %}
                             {{ translations.translations_for(article) }}
                         </div>

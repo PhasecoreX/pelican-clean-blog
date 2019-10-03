@@ -32,6 +32,7 @@
                         <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
                         {% endfor %}
                         on {{ article.locale_date }}
+                        {% if article.readtime %} - {{article.readtime.minutes}} minute read{% endif %}
                     </p>
                     {% include 'includes/comments.html' %}
                 </div>
