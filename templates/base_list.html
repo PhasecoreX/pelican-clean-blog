@@ -11,9 +11,10 @@
     {% for article in articles_page.object_list %}
                 <div class="post-preview">
                     <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">
-                        <h2 class="post-title">
-                            {{ article.title }}
-                        </h2>
+                        <h2 class="post-title">{{ article.title }}</h2>
+                        {% if article.headline %}
+                        <h4 class="post-subtitle">{{ article.headline }}</h4>
+                        {% endif %}
                     </a>
                 {% if SHOW_FULL_ARTICLE %}
                     {{ article.content }}
@@ -36,6 +37,9 @@
                     </p>
                     {% include 'includes/comments.html' %}
                 </div>
+                {% if not loop.last %}
+                <hr>
+                {% endif %}
     {% endfor %}
 
 {% include "includes/pagination.html" %}
