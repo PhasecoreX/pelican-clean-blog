@@ -1,0 +1,15 @@
+.site-heading-resize, .post-heading-resize, .page-heading-resize {
+  display: flex;
+  height: 446px;
+  align-items: center;
+}
+.site-heading-resize {
+  justify-content: center;
+}
+@media screen and (min-width: 768px) {
+  .site-heading-resize, .post-heading-resize, .page-heading-resize {
+    display: flex;
+    height: 532px;
+    align-items: center;
+  }
+}

@@ -1,40 +1,25 @@
-{% extends "base_list.html" %}
+{% extends "base_page_list.html" %}
 
-{% block head %}
-{{ super() }}
-    <meta name="description" content="{{ SITESUBTITLE|default('View the blog.') }}">
-{% endblock %}
-
-{% block opengraph %}
-{{ super() }}
-    <meta property="og:title" content="{{ SITENAME }}">
-    <meta property="og:description" content="{{ SITESUBTITLE|default('View the blog.') }}">
-    {% if HEADER_COVER %}
-    <meta property="og:image" content="{{ SITEURL }}/{{ HEADER_COVER }}">
-    {% else %}
-    <meta property="og:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
-    {% endif %}
-{% endblock opengraph %}
+{% set page=namespace() %}
 
 {% block header %}
     <!-- Page Header -->
 {% if HEADER_COVER %}
     <link rel="preload" href="{{ SITEURL }}/{{ HEADER_COVER }}" as="image">
-    <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ HEADER_COVER }}')">
+    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ HEADER_COVER }}')">
 {% elif HEADER_COLOR %}
-    <header class="intro-header" style="background-color: {{ HEADER_COLOR }}">
+    <header class="masthead" style="background-color: {{ HEADER_COLOR }}">
 {% else %}
     <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg" as="image">
-    <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg')">
+    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg')">
 {% endif %}
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="page-heading-resize">
-                        <div class="page-heading">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading-resize">
+                        <div class="site-heading">
                             <h1>{{ SITENAME }}</h1>
                             {% if SITESUBTITLE %}
-                                <hr class="small">
                                 <span class="subheading">{{ SITESUBTITLE }}</span>
                             {% endif %}
                             {% if SOCIAL and SHOW_SOCIAL_ON_INDEX_PAGE_HEADER %}

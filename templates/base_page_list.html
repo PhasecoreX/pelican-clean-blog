@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "base_page.html" %}
 
 {% block content %}
     {% if INTRO_CONTENT %}
                 <div class="row intro-content">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="col-lg-8 col-md-10 mx-auto">
                         {{ INTRO_CONTENT }}
                     </div>
                 </div>
@@ -11,19 +11,23 @@
     {% for article in articles_page.object_list %}
                 <div class="post-preview">
                     <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">
-                        <h2 class="post-title">{{ article.title }}</h2>
+                        <h2 class="post-title">
+                            {{ article.title }}
+                        </h2>
                         {% if article.headline %}
-                        <h4 class="post-subtitle">{{ article.headline }}</h4>
+                        <h3 class="post-subtitle">
+                            {{ article.headline }}
+                        </h3>
                         {% endif %}
                     </a>
                 {% if SHOW_FULL_ARTICLE %}
                     {{ article.content }}
-                {% else %}
+                {% elif SHOW_ARTICLE_SUMMARY %}
                     <p class="article-summary">
                     {% if article.has_summary %}
                         {{ article.summary }}
                     {% elif article.summary %}
-                        {{ article.summary|striptags|truncate(140) }}
+                        {{ article.summary|striptags }}
                     {% endif %}
                     </p>
                 {% endif %}

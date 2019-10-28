@@ -26,6 +26,14 @@ To define a simple header background color, set the property ``HEADER_COLOR`` in
 HEADER_COLOR = 'black'
 ```
 
+### Header Height
+
+By default the size of the header is large to display large images. If you'd like the header to be smaller, set the property ``HEADER_SMALLER`` in ``pelicanconf.py``:
+
+```python
+HEADER_SMALLER = True
+```
+
 you can use any valid css color.
 
 ### Social URLs
@@ -156,8 +164,8 @@ EXTRA_PATH_METADATA = {
  - If ``ADDTHIS_PUBID`` is defined sharing buttons from AddThis will appear
  at the bottom of the article;
  - ``GOOGLE_SITE_VERIFICATION`` - Google site verification token;
- - Set ``SHOW_FULL_ARTICLE`` to True to show full article content on index.html
- instead of summary;
+ - Set ``SHOW_FULL_ARTICLE`` to True to show full article content on index.html;
+ - Set ``SHOW_ARTICLE_SUMMARY`` to True to show the article summary on index.html;
  - Set ``SHOW_SITESUBTITLE_IN_HTML`` to True to make use of the ``SITESUBTITLE``
  variable inside the ``<title>`` HTML tag;
  - Set ``FACEBOOK_ADMINS`` to a list of Facebook account IDs which are

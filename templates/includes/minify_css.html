@@ -1,9 +1,17 @@
-{% if COLOR_SCHEME_CSS %}
-    {% assets filters="cssutils", output="css/style.min.css", "css/bootstrap.css", "css/clean-blog.css", "css/css-dropdown.css", "css/code_blocks/" + COLOR_SCHEME_CSS %}
+{% if COLOR_SCHEME_CSS and HEADER_SMALLER %}
+    {% assets filters="cssutils", output="css/style.min.css", "css/bootstrap.css", "css/clean-blog.css", "css/css-dropdown.css", "css/consistent-masthead-size-small.css", "css/code_blocks/" + COLOR_SCHEME_CSS %}
+    <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
+    {% endassets %}
+{% elif COLOR_SCHEME_CSS %}
+    {% assets filters="cssutils", output="css/style.min.css", "css/bootstrap.css", "css/clean-blog.css", "css/css-dropdown.css", "css/consistent-masthead-size.css", "css/code_blocks/" + COLOR_SCHEME_CSS %}
+    <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
+    {% endassets %}
+{% elif HEADER_SMALLER %}
+    {% assets filters="cssutils", output="css/style.min.css", "css/bootstrap.css", "css/clean-blog.css", "css/css-dropdown.css", "css/consistent-masthead-size-small.css", "css/code_blocks/darkly.css" %}
     <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
     {% endassets %}
 {% else %}
-    {% assets filters="cssutils", output="css/style.min.css", "css/bootstrap.css", "css/clean-blog.css", "css/css-dropdown.css", "css/code_blocks/darkly.css" %}
+    {% assets filters="cssutils", output="css/style.min.css", "css/bootstrap.css", "css/clean-blog.css", "css/css-dropdown.css", "css/consistent-masthead-size.css", "css/code_blocks/darkly.css" %}
     <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
     {% endassets %}
 {% endif %}

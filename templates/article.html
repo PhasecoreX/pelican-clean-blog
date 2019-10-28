@@ -85,24 +85,24 @@
     <!-- Page Header -->
 {% if article.header_cover %}
     <link rel="preload" href="{{ SITEURL }}/{{ article.header_cover }}" as="image">
-    <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ article.header_cover }}')">
+    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ article.header_cover }}')">
 {% elif HEADER_COVER %}
     <link rel="preload" href="{{ SITEURL }}/{{ HEADER_COVER }}" as="image">
-    <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ HEADER_COVER }}')">
+    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ HEADER_COVER }}')">
 {% elif HEADER_COLOR %}
-    <header class="intro-header" style="background-color: {{ HEADER_COLOR }}">
+    <header class="masthead" style="background-color: {{ HEADER_COLOR }}">
 {% else %}
     <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg" as="image">
-    <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
+    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
 {% endif %}
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="post-heading-resize">
                         <div class="post-heading">
                             <h1>{{ article.title|striptags }}</h1>
                             {% if article.headline %}
-                            <h3 class="subheading">{{ article.headline }}</h3>
+                            <h2 class="subheading">{{ article.headline }}</h2>
                             {% endif %}
                             <span class="meta">
                                 Posted by

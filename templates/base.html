@@ -20,6 +20,13 @@
 
     <!-- CSS Hamburger Menu -->
     <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/css-dropdown.min.css" rel="stylesheet">
+    
+    <!-- Consistent Masthead Size -->
+{% if HEADER_SMALLER %}
+    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/consistent-masthead-size-small.min.css" rel="stylesheet">
+{% else %}
+    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/consistent-masthead-size.min.css" rel="stylesheet">
+{% endif %}
 
     <!-- Code highlight color scheme -->
 {% if COLOR_SCHEME_CSS %}
@@ -107,7 +114,7 @@
 {% endblock twitter_card %}
 </head>
 
-{% if page %}
+{% if page and page.slug %}
 <body class="page-{{ page.slug }}">
 {% elif article %}
 <body class="article-{{ article.slug }}">
@@ -119,42 +126,41 @@
 <body>
 {% endif %}
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ SITEURL }}/">{{ SITENAME }}</a>
-                <label for="menu-toggle" class="navbar-toggle collapsed">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </label>
-            </div>
-            <input type="checkbox" id="menu-toggle" class="hidden"/>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="{{ SITEURL }}/">{{ SITENAME }}</a>
+            <label for="menu-toggle" class="navbar-toggler navbar-toggler-right">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </label>
+            <input type="checkbox" id="menu-toggle" class="collapse"/>
+            <div class="navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
                     {% for title, link in MENUITEMS %}
-                    <li><a href="{{ link }}">{{ title }}</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ link }}">{{ title }}</a>
+                    </li>
                     {% endfor %}
                     {% if DISPLAY_PAGES_ON_MENU %}
-                    {# FIXME: Simplify to 'for p in pages' when we are ready to drop support for Pelican < 3.7 #}
-                    {% for p in PAGES or pages %}
-                    <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+                    {% for p in pages %}
+                    <li class="nav-item{% if p == page %} active{% endif %}">
+                        <a class="nav-link" href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a>
+                    </li>
                     {% endfor %}
                     {% else %}
                     {% if DISPLAY_CATEGORIES_ON_MENU %}
                     {% for cat, null in categories %}
-                    <li{% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                    <li class="nav-item{% if cat == category %} active{% endif %}">
+                        <a class="nav-link" href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>
+                    </li>
                     {% endfor %}
                     {% endif %}
                     {% endif %}
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
 
     {% block header %}{% endblock header %}
@@ -162,7 +168,7 @@
     <!-- Main Content -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-lg-8 col-md-10 mx-auto">
                 {% block content %}{% endblock content %}
             </div>
         </div>
@@ -173,16 +179,16 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-8 col-md-10 mx-auto">
                 {% if SOCIAL %}
                     <ul class="list-inline text-center">
                     {% for name,link in SOCIAL %}
-                        <li>
+                        <li class="list-inline-item">
                         {% if not NO_FONTAWESOME_FONTS %}
                             <a href="{{ link }}">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-{{ name|lower }} fa-stack-1x fa-inverse"></i>
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-{{ name|lower }} fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
                         {% else %}
