@@ -1,3 +1,4 @@
+/* CSS Dropdown */
 @media screen and (max-width: 991px) {
   #menu-toggle:checked + #navbarResponsive .navbar-nav {
     max-height: 1024px;
@@ -29,4 +30,12 @@
 }
 .navbar-dark .navbar-toggler .icon-bar {
   background-color: #fff;
+}
+
+/* better_code_samples */
+.hilitewrapper {
+  max-width: inherit;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0px;
 }
