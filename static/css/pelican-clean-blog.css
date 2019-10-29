@@ -16,6 +16,9 @@
     transition: none;
   }
 }
+.navbar-toggler {
+  margin: 0;
+}
 .navbar-toggler .icon-bar {
   display: block;
   width: 22px;
