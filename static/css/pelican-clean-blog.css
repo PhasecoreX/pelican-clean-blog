@@ -32,10 +32,16 @@
   background-color: #fff;
 }
 
-/* better_code_samples */
+/* better_code_samples Plugin */
 .hilitewrapper {
   max-width: inherit;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0px;
+}
+
+/* Responsive Images */
+img {
+  max-width: 100%;
+  height: auto;
 }
