@@ -135,7 +135,7 @@
                 </article>
             {% if article.tags %}
                 <div class="tags">
-                    <p>{% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}"><span class="badge badge-secondary">{{ tag | escape }}</span></a>{% if not loop.last %} {% endif %}{% endfor %}</p>
+                    <p>{% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}"><span class="badge badge-secondary">{{ tag | escape }}</span></a>{% if not loop.last %}&nbsp;{% endif %}{% endfor %}</p>
                 </div>
             {% endif %}
 {% include 'includes/sharing.html' %}
