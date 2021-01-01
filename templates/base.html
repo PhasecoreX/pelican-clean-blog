@@ -2,85 +2,78 @@
 <html lang="{{ DEFAULT_LANG }}">
 <head>
 {% block head %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-{% if GOOGLE_SITE_VERIFICATION %}
-    <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION }}">
-{% endif %}
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>{% block title %}{{ SITENAME }}{% if SITESUBTITLE and SHOW_SITESUBTITLE_IN_HTML %} - {{ SITESUBTITLE }}{% endif %}{% endblock title %}</title>
-{% if 'assets' in PLUGINS %}
+{% for name in PLUGINS if name in ['assets', 'pelican_webassets'] %}
 {% include 'includes/minify_css.html' with context %}
 {% else %}
     <!-- Bootstrap Core CSS -->
-    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Clean Blog CSS -->
-    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/clean-blog.min.css" rel="stylesheet">
-
+    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/clean-blog.min.css" rel="stylesheet"/>
     <!-- Pelican Clean Blog CSS -->
-    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/pelican-clean-blog.min.css" rel="stylesheet">
-    
+    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/pelican-clean-blog.min.css" rel="stylesheet"/>
     <!-- Consistent Masthead Size -->
 {% if HEADER_SMALLER %}
-    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/consistent-masthead-size-small.min.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/consistent-masthead-size-small.min.css" rel="stylesheet"/>
 {% else %}
-    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/consistent-masthead-size.min.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/consistent-masthead-size.min.css" rel="stylesheet"/>
 {% endif %}
-
     <!-- Code highlight color scheme -->
 {% if COLOR_SCHEME_CSS %}
-    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/code_blocks/{{ COLOR_SCHEME_CSS }}" rel="stylesheet">
+    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/code_blocks/{{ COLOR_SCHEME_CSS }}" rel="stylesheet"/>
 {% else %}
-    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/code_blocks/darkly.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/code_blocks/darkly.css" rel="stylesheet"/>
 {% endif %}
-{% endif %}
+{% endfor %}
 {% if CSS_OVERRIDE %}
     <!-- CSS specified by the user -->
-    <link href="{{ SITEURL }}/{{ CSS_OVERRIDE }}" rel="stylesheet">
+    <link href="{{ SITEURL }}/{{ CSS_OVERRIDE }}" rel="stylesheet"/>
 {% endif %}
 {% if not NO_GOOGLE_FONTS %}
     <!-- Custom Fonts -->
-    <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin>
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.gstatic.com' rel='preconnect' crossorigin/>
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'/>
 {% endif %}
 {% if not NO_FONTAWESOME_FONTS %}
     <!-- FontAwesome -->
-    <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/fontawesome-all.min.css" as="style">
+    <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/fontawesome-all.min.css" as="style"/>
     <noscript>
-    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/fontawesome-all.min.css"/>
     </noscript>
 {% endif %}
 {% if FAVICON %}
-    <link rel="icon" href="/{{FAVICON}}">
+    <link rel="icon" href="/{{FAVICON}}"/>
 {% endif %}
-{% for name,link in SOCIAL if name in ['rss', 'rss-square'] %}
-    <link href="{{ link }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+{% for name,link in SOCIAL if name|lower in ['rss', 'rss-square'] %}
+    <link href="{{ link }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed"/>
 {% else %}
 {% if FEED_ALL_ATOM %}
-    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed"/>
 {% endif %}
 {% if FEED_ALL_RSS %}
-    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed"/>
 {% endif %}
 {% if FEED_ATOM %}
-    <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed"/>
 {% endif %}
 {% if FEED_RSS %}
-    <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed"/>
 {% endif %}
 {% if CATEGORY_FEED_ATOM and category %}
-    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM.format(slug=category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} {{ category }} Category Atom Feed" />
+    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM.format(slug=category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} {{ category }} Category Atom Feed"/>
 {% endif %}
 {% if CATEGORY_FEED_RSS and category %}
-    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS.format(slug=category.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} {{ category }} Category RSS Feed" />
+    <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS.format(slug=category.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} {{ category }} Category RSS Feed"/>
 {% endif %}
 {% if TAG_FEED_ATOM and tag %}
-    <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM.format(slug=tag.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} '{{ tag }}' Tag Atom Feed" />
+    <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM.format(slug=tag.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} '{{ tag }}' Tag Atom Feed"/>
 {% endif %}
 {% if TAG_FEED_RSS and tag %}
-    <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS.format(slug=tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} '{{ tag }}' Tag RSS Feed" />
+    <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS.format(slug=tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} '{{ tag }}' Tag RSS Feed"/>
 {% endif %}
 {% endfor %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -91,27 +84,38 @@
     <![endif]-->
 {%- endblock head %}
 {% block opengraph %}
-    <meta property="og:site_name" content="{{ SITENAME }}">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ self.title() }}"/>
+{% if page and page.url %}
+    <meta property="og:url" content="{{ SITEURL }}/{{ page.url }}" />
+{% else %}
+    <meta property="og:url" content="{{ SITEURL }}" />
+{% endif %}
+{% if page and page.header_cover %}
+    <meta property="og:image" content="{{ SITEURL }}/{{ page.header_cover }}"/>
+{% elif HEADER_COVER %}
+    <meta property="og:image" content="{{ SITEURL }}/{{ HEADER_COVER }}"/>
+{% else %}
+    <meta property="og:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg"/>
+{% endif %}
+    <meta property="og:description" content="{{ SITESUBTITLE|default('View the blog.') }}"/>
+{% endblock opengraph %}
+{% block opengraph_common %}
+    <meta property="og:site_name" content="{{ SITENAME }}"/>
 {% for admin in FACEBOOK_ADMINS %}
-    <meta property="fb:admins" content="{{ admin }}" >
+    <meta property="fb:admins" content="{{ admin }}"/>
 {% endfor %}
 {% for LOC in LOCALE %}
-    <meta property="og:locale" content="{{ LOC }}">
+    <meta property="og:locale" content="{{ LOC }}"/>
 {% endfor %}
-{% endblock opengraph %}
-{% block twitter_card %}
-{% for name,link in SOCIAL if name in ['twitter'] %}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@{{ link|replace('http://', 'https://')|replace('https://twitter.com/', '')|replace('/', '') }}">
-    <meta name="twitter:title" content="{{ SITENAME }}">
-    <meta name="twitter:description" content="{{ SITESUBTITLE|default('View the blog.') }}">
-{% if HEADER_COVER %}
-    <meta name="twitter:image" content="{{ SITEURL }}/{{ HEADER_COVER }}">
-{% else %}
-    <meta name="twitter:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
+{% endblock opengraph_common %}
+{% for name,link in SOCIAL if name|lower in ['twitter'] %}
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@{{ link|replace('http://', 'https://')|replace('https://twitter.com/', '')|replace('/', '') }}"/>
+{% endfor %}
+{% if GOOGLE_SITE_VERIFICATION %}
+    <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION }}"/>
 {% endif %}
-{% endfor %}
-{% endblock twitter_card %}
 </head>
 
 {% if page and page.slug %}

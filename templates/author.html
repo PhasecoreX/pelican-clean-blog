@@ -3,9 +3,16 @@
 {% set page=namespace(title="Articles by " ~ author) %}
 
 {% block opengraph %}
-{{ super() }}
-    <meta property="og:type" content="profile">
-    <meta property="profile:first_name" content="{{ author.name.split(' ')[0] }}">
-    <meta property="profile:last_name" content="{{ author.name.split(' ')[1:]|join(' ') }}">
-    <meta property="profile:username" content="{{ author.slug }}">
+    <meta property="og:type" content="profile"/>
+    <meta property="og:title" content="{{ author }}"/>
+    <meta property="og:url" content="{{ SITEURL }}/{{ author.url }}"/>
+{% if HEADER_COVER %}
+    <meta property="og:image" content="{{ SITEURL }}/{{ HEADER_COVER }}"/>
+{% else %}
+    <meta property="og:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg"/>
+{% endif %}
+    <meta property="og:description" content="Articles by {{ author }}"/>
+    <meta property="profile:first_name" content="{{ author.name.split(' ')[0] }}"/>
+    <meta property="profile:last_name" content="{{ author.name.split(' ')[1:]|join(' ') }}"/>
+    <meta property="profile:username" content="{{ author }}"/>
 {% endblock opengraph %}
