@@ -1,4 +1,4 @@
-{% extends "base_page_list.html" %}
+{% extends "base_article_list.html" %}
 
 {% set page=namespace(title="Articles by " ~ author) %}
 
@@ -12,6 +12,7 @@
     <meta property="og:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg"/>
 {% endif %}
     <meta property="og:description" content="Articles by {{ author }}"/>
+    <meta name="description" content="Articles by {{ author }}"/>
     <meta property="profile:first_name" content="{{ author.name.split(' ')[0] }}"/>
     <meta property="profile:last_name" content="{{ author.name.split(' ')[1:]|join(' ') }}"/>
     <meta property="profile:username" content="{{ author }}"/>

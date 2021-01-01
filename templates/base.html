@@ -5,7 +5,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>{% block title %}{{ SITENAME }}{% if SITESUBTITLE and SHOW_SITESUBTITLE_IN_HTML %} - {{ SITESUBTITLE }}{% endif %}{% endblock title %}</title>
+    <title>{% block title %}{% if page and page.title %}{{ page.title }} - {{ SITENAME }}{% elif SITESUBTITLE and SHOW_SITESUBTITLE_IN_HTML %}{{ SITENAME }} - {{ SITESUBTITLE }}{% else %}{{ SITENAME }}{% endif %}{% endblock title %}</title>
 {% for name in PLUGINS if name in ['assets', 'pelican_webassets'] %}
 {% include 'includes/minify_css.html' with context %}
 {% else %}
@@ -99,8 +99,8 @@
     <meta property="og:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg"/>
 {% endif %}
     <meta property="og:description" content="{{ SITESUBTITLE|default('View the blog.') }}"/>
+    <meta name="description" content="{{ SITESUBTITLE|default('View the blog.') }}"/>
 {% endblock opengraph %}
-{% block opengraph_common %}
     <meta property="og:site_name" content="{{ SITENAME }}"/>
 {% for admin in FACEBOOK_ADMINS %}
     <meta property="fb:admins" content="{{ admin }}"/>
@@ -108,7 +108,6 @@
 {% for LOC in LOCALE %}
     <meta property="og:locale" content="{{ LOC }}"/>
 {% endfor %}
-{% endblock opengraph_common %}
 {% for name,link in SOCIAL if name|lower in ['twitter'] %}
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:site" content="@{{ link|replace('http://', 'https://')|replace('https://twitter.com/', '')|replace('/', '') }}"/>
@@ -167,7 +166,36 @@
         </div>
     </nav>
 
-    {% block header %}{% endblock header %}
+{% block header %}
+    <!-- Page Header -->
+{% if page.header_cover %}
+    <link rel="preload" href="{{ SITEURL }}/{{ page.header_cover }}" as="image"/>
+    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ page.header_cover }}')">
+{% elif HEADER_COVER %}
+    <link rel="preload" href="{{ SITEURL }}/{{ HEADER_COVER }}" as="image"/>
+    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ HEADER_COVER }}')">
+{% elif HEADER_COLOR %}
+    <header class="masthead" style="background-color: {{ HEADER_COLOR }}">
+{% else %}
+    <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg" as="image"/>
+    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg')">
+{% endif %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="page-heading-resize">
+                        <div class="page-heading">
+                            <h1>{{ page.title }}</h1>
+                            {% if page.headline %}
+                            <h2 class="subheading">{{ page.headline }}</h2>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock header %}
 
     <!-- Main Content -->
     <div class="container">

@@ -1,19 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}{{ SITENAME }} - {{ article.title|striptags }}{% endblock %}
+{% set page=namespace(title=article.title|striptags) %}
 
 {% block head %}
 {{ super() }}
 {% for keyword in article.keywords %}
     <meta name="keywords" content="{{keyword}}"/>
 {% endfor %}
-{% if description %}
-    <meta name="description" content="{{ description }}"/>
-{% elif article.headline %}
-    <meta name="description" content="{{ article.headline }}"/>
-{% elif article.summary %}
-    <meta name="description" content="{{ article.summary|striptags|truncate(140) }}"/>
-{% endif %}
 {% for author in article.authors %}
     <meta name="author" content="{{ author }}"/>
 {% endfor %}
@@ -41,10 +34,13 @@
 {% endif %}
 {% if description %}
     <meta property="og:description" content="{{ description }}"/>
+    <meta name="description" content="{{ description }}"/>
 {% elif article.headline %}
     <meta property="og:description" content="{{ article.headline }}"/>
+    <meta name="description" content="{{ article.headline }}"/>
 {% elif article.summary %}
     <meta property="og:description" content="{{ article.summary|striptags|truncate(140) }}"/>
+    <meta name="description" content="{{ article.summary|striptags|truncate(140) }}"/>
 {% endif %}
 {% for author in article.authors %}
     <meta property="article:author" content="{{ SITEURL }}/{{ author.url }}"/>
