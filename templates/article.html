@@ -2,8 +2,7 @@
 
 {% set page=namespace(title=article.title|striptags) %}
 
-{% block head %}
-{{ super() }}
+{% block opengraph %}
 {% for keyword in article.keywords %}
     <meta name="keywords" content="{{keyword}}"/>
 {% endfor %}
@@ -13,9 +12,6 @@
 {% for tag in article.tags %}
     <meta name="tags" content="{{tag}}"/>
 {% endfor %}
-{% endblock head %}
-
-{% block opengraph %}
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="{{ article.title|striptags }}"/>
     <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}"/>
