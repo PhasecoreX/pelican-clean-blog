@@ -1,21 +1,6 @@
 {% extends "base_article_list.html" %}
 
-{% set page=namespace() %}
-
 {% block header %}
-    <!-- Page Header -->
-{% if HEADER_COVER %}
-    <link rel="preload" href="{{ SITEURL }}/{{ HEADER_COVER }}" as="image">
-    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ HEADER_COVER }}')">
-{% elif HEADER_COLOR %}
-    <header class="masthead" style="background-color: {{ HEADER_COLOR }}">
-{% else %}
-    <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg" as="image">
-    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg')">
-{% endif %}
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="site-heading-resize">
                         <div class="site-heading">
                             <h1>{{ SITENAME }}</h1>
@@ -37,8 +22,4 @@
                             {% endif %}
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </header>
 {% endblock header %}

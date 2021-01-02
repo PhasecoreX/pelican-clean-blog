@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% set page=namespace(title="Archives for " ~  period | reverse | join (' ') ) %}
+{% set page=namespace(title="Archives for " ~  period | reverse | join (' '), headline="A list of all articles written in " ~  period | reverse | join (' ') ~ " for " ~ SITENAME) %}
 
 {% block content %}
                 <dl>
@@ -8,6 +8,5 @@
                     <dt>{{ article.locale_date }}</dt>
                     <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
                 {% endfor %}
-                    <hr>
                 </dl>
 {% endblock content %}
