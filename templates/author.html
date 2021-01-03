@@ -4,7 +4,7 @@
 
 {% block opengraph %}
     <meta property="og:type" content="profile"/>
-    <meta property="og:title" content="{{ author }}"/>
+    <meta property="og:title" content="{{ author }} | {{ SITENAME }}"/>
     <meta property="og:url" content="{{ SITEURL }}/{{ author.url }}"/>
 {% if HEADER_COVER %}
     <meta property="og:image" content="{{ SITEURL }}/{{ HEADER_COVER }}"/>

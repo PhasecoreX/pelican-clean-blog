@@ -7,7 +7,7 @@
 {% endif %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>{% if page and page.title %}{{ page.title }} - {{ SITENAME }}{% elif SITESUBTITLE and SHOW_SITESUBTITLE_IN_HTML %}{{ SITENAME }} - {{ SITESUBTITLE }}{% else %}{{ SITENAME }}{% endif %}</title>
+    <title>{% if page and page.title %}{{ page.title }} | {{ SITENAME }}{% elif SITESUBTITLE and SHOW_SITESUBTITLE_IN_HTML %}{{ SITENAME }} - {{ SITESUBTITLE }}{% else %}{{ SITENAME }}{% endif %}</title>
 {% for name in PLUGINS if name in ['assets', 'pelican_webassets'] %}
 {% include 'includes/minify_css.html' with context %}
 {% else %}
@@ -110,7 +110,7 @@
 {% block opengraph %}
     <meta property="og:type" content="website"/>
 {% if page and page.title %}
-    <meta property="og:title" content="{{ page.title }} - {{ SITENAME }}"/>
+    <meta property="og:title" content="{{ page.title }} | {{ SITENAME }}"/>
 {% else %}
     <meta property="og:title" content="{{ SITENAME }}"/>
 {% endif %}

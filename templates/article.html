@@ -19,7 +19,7 @@
 
 {% block opengraph %}
     <meta property="og:type" content="article"/>
-    <meta property="og:title" content="{{ article.title|striptags }}"/>
+    <meta property="og:title" content="{{ article.title|striptags }} | {{ SITENAME }}"/>
     <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}"/>
 {% if article.og_image %}
     {% if article.og_image|lower|truncate(4, True, '') == "http" %}
