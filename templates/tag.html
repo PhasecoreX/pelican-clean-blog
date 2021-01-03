@@ -1,4 +1,4 @@
 {% extends "base_article_list.html" %}
 
-{% set page=namespace(title=tag.name.capitalize(), headline="All articles tagged as '" ~ tag ~ "' in " ~ SITENAME) %}
+{% set page=namespace(title=tag.name.capitalize(), headline="All articles tagged as '" ~ tag ~ "' in " ~ SITENAME, noindex=True) %}
 

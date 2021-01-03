@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% set page=namespace(title="Tags", headline="A list of all tags for " ~ SITENAME) %}
+{% set page=namespace(title="Tags", headline="A list of all tags for " ~ SITENAME, noindex=True) %}
 
 {% block content %}
                 <ul>

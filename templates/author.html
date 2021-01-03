@@ -1,6 +1,6 @@
 {% extends "base_article_list.html" %}
 
-{% set page=namespace(title=author, headline="All articles written by " ~ author ~ " for " ~ SITENAME) %}
+{% set page=namespace(title=author, headline="All articles written by " ~ author ~ " for " ~ SITENAME, noindex=True) %}
 
 {% block opengraph %}
     <meta property="og:type" content="profile"/>

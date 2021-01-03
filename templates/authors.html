@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% set page=namespace(title="Authors", headline="A list of all writers that contribute to " ~ SITENAME) %}
+{% set page=namespace(title="Authors", headline="A list of all writers that contribute to " ~ SITENAME, noindex=True) %}
 
 {% block content %}
             {% for author, articles in authors|sort %}

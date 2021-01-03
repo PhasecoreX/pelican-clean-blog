@@ -8,6 +8,9 @@
 {% elif article.summary %}
     {% set page.headline=article.summary|striptags|truncate(140) %}
 {% endif %}
+{% if article.noindex %}
+    {% set page.noindex=True %}
+{% endif %}
 
 {% block opengraph %}
 {% for keyword in article.keywords %}

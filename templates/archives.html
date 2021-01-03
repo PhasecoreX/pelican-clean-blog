@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% set page=namespace(title="Archives", headline="A list of all articles written for " ~ SITENAME) %}
+{% set page=namespace(title="Archives", headline="A list of all articles written for " ~ SITENAME, noindex=True) %}
 
 {% block content %}
                 <dl>
