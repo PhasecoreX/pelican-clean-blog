@@ -1,27 +1,23 @@
 {% extends "base.html" %}
 
 {% set page=namespace(title=article.title|striptags) %}
-{% if description %}
-    {% set page.headline=description %}
-{% elif article.headline %}
-    {% set page.headline=article.headline %}
-{% elif article.summary %}
-    {% set page.headline=article.summary|striptags|truncate(140) %}
-{% endif %}
 {% if article.noindex %}
     {% set page.noindex=True %}
 {% endif %}
 
-{% block opengraph %}
+{% block head %}
 {% for keyword in article.keywords %}
-    <meta name="keywords" content="{{keyword}}"/>
+    <meta name="keywords" content="{{ keyword }}"/>
 {% endfor %}
 {% for author in article.authors %}
     <meta name="author" content="{{ author }}"/>
 {% endfor %}
 {% for tag in article.tags %}
-    <meta name="tags" content="{{tag}}"/>
+    <meta name="tags" content="{{ tag }}"/>
 {% endfor %}
+{% endblock head %}
+
+{% block opengraph %}
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="{{ article.title|striptags }}"/>
     <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}"/>
