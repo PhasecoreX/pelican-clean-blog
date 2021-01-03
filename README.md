@@ -172,6 +172,9 @@ EXTRA_PATH_METADATA = {
  associated with this blog. For example ``['12345']``. For more info see
  https://developers.facebook.com/docs/platforminsights/domains
 
+### Pages/Articles
+ - The metadata ``noindex`` can be set to ``True`` on a page or article in order to have it not be indexed by search engines
+
 ### Articles
 
  - To customize header cover to articles, insert the metadata ``header_cover``.
