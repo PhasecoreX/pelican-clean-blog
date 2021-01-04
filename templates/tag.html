@@ -1,4 +1,5 @@
 {% extends "base_article_list.html" %}
 
-{% set page=namespace(title=tag.name.capitalize(), headline="All articles tagged as '" ~ tag ~ "' in " ~ SITENAME, noindex=True) %}
+{% block title %}{{ tag.name.capitalize() }}{% endblock title %}
 
+{% block headline %}All articles tagged as '{{ tag }}' in {{ SITENAME }}{% endblock headline %}

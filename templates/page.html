@@ -1,5 +1,30 @@
 {% extends "base.html" %}
 
+{% block noindex %}{% if page.noindex %}{{ super() }}{% endif %}{% endblock noindex %}
+
+{% block title %}{{ page.title }}{% endblock title %}
+
+{% block headline %}{{ page.headline }}{% endblock headline %}
+
+{% block description %}
+{% if page.description %}
+{{ page.description }}
+{%- elif page.has_summary %}
+{{ page.summary }}
+{%- else %}
+{{ super() }}
+{%- endif %}
+{% endblock description %}
+
+{% block header_tag %}
+{% if page.header_cover %}
+    <link rel="preload" href="{{ SITEURL }}/{{ page.header_cover }}" as="image"/>
+    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ page.header_cover }}')">
+{% else %}
+{{ super() }}
+{%- endif %}
+{% endblock header_tag %}
+
 {% block content %}
                 <article>
                     {{ page.content }}

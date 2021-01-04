@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% set page=namespace(title="Categories", headline="A list of all categories for " ~ SITENAME, noindex=True) %}
+{% block title %}Categories{% endblock title %}
+
+{% block headline %}A list of all categories for {{ SITENAME }}{% endblock headline %}
 
 {% block content %}
                 <ul>

@@ -1,3 +1,5 @@
 {% extends "base_article_list.html" %}
 
-{% set page=namespace(title=category, headline="All articles categorized as '" ~ category ~ "' in " ~ SITENAME, noindex=True) %}
+{% block title %}{{ category }}{% endblock title %}
+
+{% block headline %}All articles categorized as '{{ category }}' in {{ SITENAME }}{% endblock headline %}

@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 
-{% set page=namespace(title=article.title|striptags) %}
-{% if article.noindex %}
-    {% set page.noindex=True %}
-{% endif %}
+{% block noindex %}{% if article.noindex %}{{ super() }}{% endif %}{% endblock noindex %}
+
+{% block title %}{{ article.title|striptags }}{% endblock title %}
+
+{% block description %}
+{% if article.description %}
+{{ article.description }}
+{%- elif article.has_summary %}
+{{ article.summary }}
+{%- elif article.summary %}
+{{ article.summary|striptags|truncate(140) }}
+{%- else %}
+{{ super() }}
+{%- endif %}
+{% endblock description %}
 
 {% block head %}
 {% for keyword in article.keywords %}
@@ -19,8 +30,6 @@
 
 {% block opengraph %}
     <meta property="og:type" content="article"/>
-    <meta property="og:title" content="{{ article.title|striptags }} | {{ SITENAME }}"/>
-    <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}"/>
 {% if article.og_image %}
     {% if article.og_image|lower|truncate(4, True, '') == "http" %}
     <meta property="og:image" content="{{ article.og_image }}"/>
@@ -41,18 +50,25 @@
 {% endblock opengraph %}
 
 {% block twitter_card %}
-    {% for name,link in SOCIAL if name|lower in ['twitter'] %}
-        {% if article.twitter_image %}
-            {% if article.twitter_image|lower|truncate(4, True, '') == "http" %}
+    {% if article.twitter_image %}
+        {% if article.twitter_image|lower|truncate(4, True, '') == "http" %}
     <meta property="twitter:image" content="{{ article.twitter_image }}">
-            {% else %}
+        {% else %}
     <meta property="twitter:image" content="{{ SITEURL }}/{{ article.twitter_image }}">
-            {% endif %}
         {% endif %}
-    {% endfor %}
+    {% endif %}
 {% endblock twitter_card %}
 
-{% block header %}
+{% block header_tag %}
+{% if article.header_cover %}
+    <link rel="preload" href="{{ SITEURL }}/{{ article.header_cover }}" as="image"/>
+    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ article.header_cover }}')">
+{% else %}
+{{ super() }}
+{%- endif %}
+{% endblock header_tag %}
+
+{% block header_content %}
                     <div class="post-heading-resize">
                         <div class="post-heading">
                             <h1>{{ article.title|striptags }}</h1>
@@ -68,7 +84,7 @@
                             {{ translations.translations_for(article) }}
                         </div>
                     </div>
-{% endblock header %}
+{% endblock header_content %}
 
 {% block content %}
                 <!-- Post Content -->
