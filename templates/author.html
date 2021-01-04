@@ -4,14 +4,10 @@
 
 {% block headline %}All articles written by {{ author }} for {{ SITENAME }}{% endblock headline %}
 
-{% block opengraph %}
-    <meta property="og:type" content="profile"/>
-{% if HEADER_COVER %}
-    <meta property="og:image" content="{{ SITEURL }}/{{ HEADER_COVER }}"/>
-{% else %}
-    <meta property="og:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg"/>
-{% endif %}
+{% block opengraph_type %}profile{% endblock opengraph_type %}
+
+{% block opengraph_type_extras %}
     <meta property="profile:first_name" content="{{ author.name.split(' ')[0] }}"/>
     <meta property="profile:last_name" content="{{ author.name.split(' ')[1:]|join(' ') }}"/>
     <meta property="profile:username" content="{{ author }}"/>
-{% endblock opengraph %}
+{% endblock opengraph_type_extras %}

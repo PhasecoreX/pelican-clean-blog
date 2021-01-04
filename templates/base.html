@@ -91,22 +91,23 @@
 {% else %}
     <meta property="og:title" content="{{ SITENAME }}"/>
 {% endif %}
-    <meta property="og:description" content="{{ self.description() }}"/>
-{% if output_file == 'index.html' %}
-    <meta property="og:url" content="{{ SITEURL }}"/>
-{% else %}
-    <meta property="og:url" content="{{ SITEURL }}/{{ output_file|replace('index.html', '') }}"/>
-{% endif %}
-{% block opengraph %}
-    <meta property="og:type" content="website"/>
-{% if page and page.header_cover %}
-    <meta property="og:image" content="{{ SITEURL }}/{{ page.header_cover }}"/>
+    <meta property="og:type" content="{% block opengraph_type %}website{% endblock opengraph_type %}"/>
+{% block opengraph_type_extras %}{% endblock opengraph_type_extras %}
+{% block opengraph_image %}
+{% if self.header_image and self.header_image() %}
+    <meta property="og:image" content="self.header_image()"/>
 {% elif HEADER_COVER %}
     <meta property="og:image" content="{{ SITEURL }}/{{ HEADER_COVER }}"/>
 {% else %}
     <meta property="og:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg"/>
 {% endif %}
-{% endblock opengraph %}
+{% endblock opengraph_image %}
+{% if output_file == 'index.html' %}
+    <meta property="og:url" content="{{ SITEURL }}"/>
+{% else %}
+    <meta property="og:url" content="{{ SITEURL }}/{{ output_file|replace('index.html', '') }}"/>
+{% endif %}
+    <meta property="og:description" content="{{ self.description() }}"/>
     <meta property="og:site_name" content="{{ SITENAME }}"/>
 {% for admin in FACEBOOK_ADMINS %}
     <meta property="fb:admins" content="{{ admin }}"/>
@@ -176,8 +177,10 @@
     </nav>
 
     <!-- Page Header -->
-{% block header_tag %}
-{% if HEADER_COVER %}
+{% if self.header_image and self.header_image() %}
+    <link rel="preload" href="self.header_image()" as="image"/>
+    <header class="masthead" style="background-image: url('self.header_image()')">
+{% elif HEADER_COVER %}
     <link rel="preload" href="{{ SITEURL }}/{{ HEADER_COVER }}" as="image"/>
     <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ HEADER_COVER }}')">
 {% elif HEADER_COLOR %}
@@ -186,7 +189,6 @@
     <link rel="preload" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg" as="image"/>
     <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg')">
 {% endif %}
-{% endblock header_tag %}
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">

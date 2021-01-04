@@ -16,14 +16,11 @@
 {%- endif %}
 {% endblock description %}
 
-{% block header_tag %}
+{% block header_image %}
 {% if page.header_cover %}
-    <link rel="preload" href="{{ SITEURL }}/{{ page.header_cover }}" as="image"/>
-    <header class="masthead" style="background-image: url('{{ SITEURL }}/{{ page.header_cover }}')">
-{% else %}
-{{ super() }}
+{{ SITEURL }}/{{ page.header_cover }}
 {%- endif %}
-{% endblock header_tag %}
+{% endblock header_image %}
 
 {% block content %}
                 <article>
