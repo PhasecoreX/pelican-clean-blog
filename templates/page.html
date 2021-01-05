@@ -16,6 +16,28 @@
 {%- endif %}
 {% endblock description %}
 
+{% block opengraph_image %}
+{% if page.og_image %}
+    {% if page.og_image|lower|truncate(4, True, '') == "http" %}
+    <meta property="og:image" content="{{ page.og_image }}"/>
+    {% else %}
+    <meta property="og:image" content="{{ SITEURL }}/{{ page.og_image }}"/>
+    {% endif %}
+{% else %}
+{{ super() }}
+{%- endif %}
+{% endblock opengraph_image %}
+
+{% block twitter_card %}
+    {% if page.twitter_image %}
+        {% if page.twitter_image|lower|truncate(4, True, '') == "http" %}
+    <meta property="twitter:image" content="{{ page.twitter_image }}">
+        {% else %}
+    <meta property="twitter:image" content="{{ SITEURL }}/{{ page.twitter_image }}">
+        {% endif %}
+    {% endif %}
+{% endblock twitter_card %}
+
 {% block header_image %}
 {% if page.header_cover %}
 {{ SITEURL }}/{{ page.header_cover }}
