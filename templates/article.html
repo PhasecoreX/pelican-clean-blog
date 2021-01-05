@@ -74,9 +74,10 @@
                             {% endif %}
                             <span class="meta">Posted by {% for author in article.authors -%}
                                 <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
-                            {% endfor -%}
-                            </span>
-                            <span class="meta">{{ article.locale_date }}{% if article.modified %} · Updated {{ article.locale_modified }}{% endif %}{% if article.readtime %} · {{article.readtime.minutes}} min read{% endif %}</span>
+                            {% endfor %} on {{ article.locale_date }}</span>
+                            {% if article.modified or article.readtime %}
+                            <span class="meta">{% if article.modified %}Updated {{ article.locale_modified }}{% endif %}{% if article.readtime %}{% if article.modified %} · {% endif %}{{article.readtime.minutes}} min read{% endif %}</span>
+                            {% endif %}
                             {% import 'translations.html' as translations with context %}
                             {{ translations.translations_for(article) }}
                         </div>
