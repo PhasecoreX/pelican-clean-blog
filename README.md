@@ -166,8 +166,8 @@ EXTRA_PATH_METADATA = {
  - ``GOOGLE_SITE_VERIFICATION`` - Google site verification token;
  - Set ``SHOW_FULL_ARTICLE`` to True to show full article content on index.html;
  - Set ``SHOW_ARTICLE_SUMMARY`` to True to show the article summary on index.html;
- - Set ``SHOW_SITESUBTITLE_IN_HTML`` to True to make use of the ``SITESUBTITLE``
- variable inside the ``<title>`` HTML tag;
+ - Set ``SHOW_SITENAME_IN_TITLE`` to True to append your ``SITENAME`` to the end of all page titles (except index, since the page title is just your ``SITENAME``). This will be seen in the browsers tab name and in search results (whatever looks at the ``<title>`` tag).
+ - Set ``SHOW_SITENAME_IN_OG_TITLE`` to True to append your ``SITENAME`` to the end of all titles that show up in Open Graph/Twitter cards (whatever looks at ``<meta property="og:title">`` tags). Not normally needed, as your domain name will still show up in the preview card, but might be useful if your domain name and blog name differ.
  - Set ``FACEBOOK_ADMINS`` to a list of Facebook account IDs which are
  associated with this blog. For example ``['12345']``. For more info see
  https://developers.facebook.com/docs/platforminsights/domains

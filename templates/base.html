@@ -7,7 +7,7 @@
 {% endblock noindex %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>{% block title %}{% endblock title %}{% if self.title() %} | {{ SITENAME }}{% elif SITESUBTITLE and SHOW_SITESUBTITLE_IN_HTML %}{{ SITENAME }} - {{ SITESUBTITLE }}{% else %}{{ SITENAME }}{% endif %}</title>
+    <title>{% block title %}{% endblock title %}{% if self.title() %}{% if SHOW_SITENAME_IN_TITLE %} | {{ SITENAME }}{% endif %}{% else %}{{ SITENAME }}{% endif %}</title>
 {% for name in PLUGINS if name in ['assets', 'pelican_webassets'] %}
 {% include 'includes/minify_css.html' with context %}
 {% else %}
@@ -87,7 +87,7 @@
 {% block head %}{% endblock head %}
     <meta name="description" content="{% block description %}{% if self.headline and self.headline() %}{{ self.headline() }}{% else %}{{ SITESUBTITLE|default('View the blog.') }}{% endif %}{% endblock description %}"/>
 {% if self.title() %}
-    <meta property="og:title" content="{{ self.title() }} | {{ SITENAME }}"/>
+    <meta property="og:title" content="{{ self.title() }}{% if SHOW_SITENAME_IN_OG_TITLE %} | {{ SITENAME }}{% endif %}"/>
 {% else %}
     <meta property="og:title" content="{{ SITENAME }}"/>
 {% endif %}
