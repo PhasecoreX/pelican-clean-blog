@@ -2,11 +2,11 @@
 <html lang="{{ DEFAULT_LANG }}">
 <head>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 {% block noindex %}
     <meta name="robots" content="noindex"/>
 {% endblock noindex %}
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>{% block title %}{% endblock title %}{% if self.title() %}{% if SHOW_SITENAME_IN_TITLE %} | {{ SITENAME }}{% endif %}{% else %}{{ SITENAME }}{% endif %}</title>
 {% for name in PLUGINS if name in ['assets', 'pelican_webassets'] %}
 {% include 'includes/minify_css.html' with context %}
